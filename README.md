@@ -28,8 +28,7 @@ sudo ampy -b 115200 -p /dev/ttyUSB0 put uLCD.py
 ## Usage
 ### uGPIO.py
 A generic wrapper to interact with GPIO pin. One wrapper works for Led, Buzzer, RGB led, PWM Led, Servo motor. <br >
-Each .py contains handy help print out <br >
-Examples:
+#### usage:
 ```
 from uGPIO import GPIO
 GPIO.help()
@@ -67,7 +66,9 @@ Wrapper to simplify the operation of ultrasonic HC-SR04.
 ```
 from usensor import Ultrasonic
 us=Ultrasonic(5,4)      # initiate sensor with trigger at Pin 5 and echo at Pin 4. Change it according your setup
-
+```
+#### usage:
+```
 #get distance and return single measurement
 us.get_distance()       # read the distance. cm is default unit of measure
 us.get_distance("mm")   # read output in milimeter
@@ -81,7 +82,7 @@ us.get_average(5,"mm")  # read average distance from custom individual value in 
 Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
 ```
 from uLCD import LCD
-l=LCD() # initiate LCD
+l=LCD()
 
 #print out help
 l.help()
@@ -97,9 +98,13 @@ show   = show content displayed
 clear  = clear the screen and content
 scroll = scroll the text from left to right
 ```
-#### examples:
-d.text("hello") # display text hello on the screen with default position
-d.move(7,1)     #change start position at column 5 at 2nd line
-d.text("world") # display text world at the new position
-d.clear()       # clear the screen
+#### usage:
+```
+l.help()            # print help
+d.text("hello")     # display text 'hello' on the screen with default position
+d.move(7,1)         # change start position at column 5 at 2nd line
+d.text("world")     # display text world at the new position
+l.scroll('hi')      # scroll the text 'hi' from left to right. default delay 0.5s
+l.scroll('hi',0.1)  # scroll text at custom speed
+d.clear()           # clear the screen
 ```
