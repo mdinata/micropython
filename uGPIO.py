@@ -1,3 +1,7 @@
+# micropython GPIO wrapper for ESP8266 based board
+# written by Andi Dinata
+# under MIT License
+
 from machine import Pin, PWM
 import time
 
