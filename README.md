@@ -11,11 +11,11 @@ Clone this repository first then copy these files to your ESP8266 board using ad
 sudo ampy -b 115200 -p /dev/ttyUSB0 put esp8266_i2c_lcd.py
 sudo ampy -b 115200 -p /dev/ttyUSB0 put lcd_api.py
 ```
-Connect your LCD1602 
-SCL --> D1 (GPIO5) 
-SDA --> D2 (GPIO4)
-VCC --> 5v 
-GND --> G
+Connect your LCD1602<br >
+SCL --> D1 (GPIO5)<br >
+SDA --> D2 (GPIO4)<br >
+VCC --> 5v <br >
+GND --> G<br >
 
 ## Installing
 Clone this repository and copy the .py to your ESP8266 board. You can use adafruit-ampy tool to copy to your ESP8266 board
