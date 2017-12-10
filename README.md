@@ -1,18 +1,38 @@
-# micropython
-micropython script for ESP8266 based microcontroller
+# Micropython wrapper
+Micropython wrapper script for ESP8266 based microcontroller
 
 This repository contains the wrapper for interacting with GPIO pin, sensor and displays.
 
-uGPIO.py
+
+##Installing
+Clone this repository and copy the .py to your ESP8266 board. You can use adafruit-ampy tool to copy to your ESP8266 board
+
+'''
+sudo ampy -b 115200 -p /dev/ttyUSB0 put uGPIO.py
+sudo ampy -b 115200 -p /dev/ttyUSB0 put usensor.py
+sudo ampy -b 115200 -p /dev/ttyUSB0 put uLCD.py
+'''
+
+Connect your LCD1602 
+SCL --> D1 (GPIO5) 
+SDA --> D2 (GPIO4)
+VCC --> 5v 
+GND --> G
+
+For LCD wrapper, the LCD1602 driver source is located at https://github.com/dhylands/python_lcd. 
+Clone this repository first then copy these files to your ESP8266 board using adafruit-ampy or webrepl:
+
+'''
+sudo ampy -b 115200 -p /dev/ttyUSB0 put esp8266_i2c_lcd.py
+sudo ampy -b 115200 -p /dev/ttyUSB0 put lcd_api.py
+'''
+
+
+###uGPIO.py
 A generic wrapper to interact with GPIO pin. One wrapper works for Led, Buzzer, RGB led, PWM Led, Servo motor
-
-Usage:
-Clone this repository and copy the .py to your ESP8266 board. You can use adafruit-ampy tool or via webrepl
-Access your micropython in ES8266 board to try this script
-
 Each .py contains handy help print out
-
 Examples:
+'''
 from uGPIO import GPIO
 GPIO.help()
 Cheat Sheet
@@ -28,56 +48,42 @@ D7 IO MOSI                      GPIO13
 D8 IO 10k Pull Down             GPIO15
 All Pins have PWM except D0
 
-#pin on/off
+pin on/off
 p=GPIO(12)  #initiate pin 12 with default PWM inactive
 p.on()      # GPIO on
 p.off()     # GPIO off
 
-#pin on/off in loop (e.g. blinking led)
+pin on/off in loop (e.g. blinking led)
 p.repeat(5)     # loop for 5 times at default delay time 0.5 second
 p.repeat(5,0.1) # loop for 5 times at custom delay time e.g. 0.1 second
 
-#use PWM
+use PWM
 p=GPIO(12,1)  # initiate pin 12 with PWM flag active with default frequency at 500
 p.scale(50)   # change duty cycle in 1-100. 0 = off, 1 = minimum, 100 = maximum
 
 
-ultrasonic.py
+###usensor.py
 Wrapper to simplify the operation of ultrasonic HC-SR04.
-
-Usage:
-Copy ultrasonic.py to your ESP8266 board using adafruit-ampy tool or via WebREPL
-Access your micropython in ES8266 board to try this script
-
-from ultrasonic import Ultrasonic
+'''
+from usensor import Ultrasonic
 us=Ultrasonic(5,4) # initiate ultrasonic sensor with trigger at Pin 5 and echo at Pin 4. Change it according your setup
 
-#get distance and return single measurement
+get distance and return single measurement
 us.get_distance() # read the distance. cm is default unit of measure
 us.get_distance("mm")   # read output in milimeter
 us.get_distance("m")    # read output in meter
 
-#get distance from multiple measurement and return average value
+get distance from multiple measurement and return average value
 us.get_average() # read average distance from a 3 measurement (default) in cm
 us.get_average(5,"mm") #read average distance from custom individual value in custom unit of measure
-
-uLCD.py
-Wrapper to simplify the operation of LCD1602 display with I2C Backpack. LCD1602 driver source is located at https://github.com/dhylands/python_lcd. clone this repository first then copy these files to your ESP8266 board using adafruit-ampy or webrepl:
-esp8266_i2c_lcd.py
-lcd_api.py
-Then copy uLCD.py to your ESP8266 board
-
-Connect your LCD1602 
-SCL --> D1 (GPIO5) 
-SDA --> D2 (GPIO4)
-VCC --> 5v 
-GND --> G
-
-usage:
+'''
+###uLCD.py
+Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
+'''
 from uLCD import LCD
 d=LCD() # initiate LCD
 
-#print out help
+print out help
 d.help()
 Cheat sheet
 -----------
@@ -93,4 +99,4 @@ d.text("hello") # display text hello on the screen with default position
 d.move(7,1)     #change start position at column 5 at 2nd line
 d.text("world") # display text world at the new position
 d.clear()       # clear the screen
-
+'''
