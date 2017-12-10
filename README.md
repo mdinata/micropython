@@ -101,10 +101,10 @@ scroll = scroll the text from left to right
 #### usage:
 ```
 l.help()            # print help
-d.text("hello")     # display text 'hello' on the screen with default position
-d.move(7,1)         # change start position at column 5 at 2nd line
-d.text("world")     # display text world at the new position
+l.text("hello")     # display text 'hello' on the screen with default position
+l.move(7,1)         # change start position at column 5 at 2nd line
+l.text("world")     # display text world at the new position
 l.scroll('hi')      # scroll the text 'hi' from left to right. default delay 0.5s
 l.scroll('hi',0.1)  # scroll text at custom speed
-d.clear()           # clear the screen
+l.clear()           # clear the screen
 ```
