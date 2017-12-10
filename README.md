@@ -28,8 +28,8 @@ sudo ampy -b 115200 -p /dev/ttyUSB0 put uLCD.py
 
 
 ### uGPIO.py
-A generic wrapper to interact with GPIO pin. One wrapper works for Led, Buzzer, RGB led, PWM Led, Servo motor
-Each .py contains handy help print out
+A generic wrapper to interact with GPIO pin. One wrapper works for Led, Buzzer, RGB led, PWM Led, Servo motor. <br >
+Each .py contains handy help print out <br >
 Examples:
 ```
 from uGPIO import GPIO
@@ -47,34 +47,34 @@ D7 IO MOSI                      GPIO13
 D8 IO 10k Pull Down             GPIO15
 All Pins have PWM except D0
 
-pin on/off
+#pin on/off
 p=GPIO(12)  #initiate pin 12 with default PWM inactive
 p.on()      # GPIO on
 p.off()     # GPIO off
 
-pin on/off in loop (e.g. blinking led)
+#pin on/off in loop (e.g. blinking led)
 p.repeat(5)     # loop for 5 times at default delay time 0.5 second
 p.repeat(5,0.1) # loop for 5 times at custom delay time e.g. 0.1 second
 
-use PWM
+#use PWM
 p=GPIO(12,1)  # initiate pin 12 with PWM flag active with default frequency at 500
 p.scale(50)   # change duty cycle in 1-100. 0 = off, 1 = minimum, 100 = maximum
+```
 
-
-###usensor.py
+### usensor.py
 Wrapper to simplify the operation of ultrasonic HC-SR04.
 ```
 from usensor import Ultrasonic
-us=Ultrasonic(5,4) # initiate ultrasonic sensor with trigger at Pin 5 and echo at Pin 4. Change it according your setup
+us=Ultrasonic(5,4)      # initiate sensor with trigger at Pin 5 and echo at Pin 4. Change it according your setup
 
-get distance and return single measurement
-us.get_distance() # read the distance. cm is default unit of measure
+#get distance and return single measurement
+us.get_distance()       # read the distance. cm is default unit of measure
 us.get_distance("mm")   # read output in milimeter
 us.get_distance("m")    # read output in meter
 
-get distance from multiple measurement and return average value
-us.get_average() # read average distance from a 3 measurement (default) in cm
-us.get_average(5,"mm") #read average distance from custom individual value in custom unit of measure
+#get distance from multiple measurement and return average value
+us.get_average()        # read average distance from a 3 measurement (default) in cm
+us.get_average(5,"mm")  #read average distance from custom individual value in custom unit of measure
 ```
 ###uLCD.py
 Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
@@ -82,7 +82,7 @@ Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
 from uLCD import LCD
 d=LCD() # initiate LCD
 
-print out help
+#print out help
 d.help()
 Cheat sheet
 -----------
