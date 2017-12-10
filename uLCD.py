@@ -1,3 +1,8 @@
+# micropython LCD wrapper for ESP8266 based board
+# written by Andi Dinata
+# under MIT License
+# library esp8266_i2c_lcd source is https://github.com/dhylands/python_lcd 
+
 from machine import I2C, Pin
 from esp8266_i2c_lcd import I2cLcd
 import time
