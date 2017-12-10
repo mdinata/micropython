@@ -34,19 +34,21 @@ Examples:
 ```
 from uGPIO import GPIO
 GPIO.help()
-Cheat Sheet
----------------------------------------
-D0 IO                           GPIO16
-D1 IO SCL                       GPIO5
-D2 IO SDA                       GPIO4
-D3 IO 10k Pull Up               GPIO0
-D4 IO 10k Pull Up, Built-in Led GPIO2
-D5 IO SCK                       GPIO14
-D6 IO MISO                      GPIO12
-D7 IO MOSI                      GPIO13
-D8 IO 10k Pull Down             GPIO15
-All Pins have PWM except D0
-
+```
+output will be: <br >
+Cheat Sheet <br >
+--------------------------------------- <br >
+D0 IO                           GPIO16 <br >
+D1 IO SCL                       GPIO5 <br >
+D2 IO SDA                       GPIO4 <br >
+D3 IO 10k Pull Up               GPIO0 <br >
+D4 IO 10k Pull Up, Built-in Led GPIO2 <br >
+D5 IO SCK                       GPIO14 <br >
+D6 IO MISO                      GPIO12 <br >
+D7 IO MOSI                      GPIO13 <br >
+D8 IO 10k Pull Down             GPIO15 <br >
+All Pins have PWM except D0 <br >
+```
 #pin on/off
 p=GPIO(12)  #initiate pin 12 with default PWM inactive
 p.on()      # GPIO on
@@ -80,20 +82,23 @@ us.get_average(5,"mm")  #read average distance from custom individual value in c
 Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
 ```
 from uLCD import LCD
-d=LCD() # initiate LCD
+l=LCD() # initiate LCD
 
 #print out help
-d.help()
-Cheat sheet
------------
-text = put string on screen, default position column 1, line 1
-move = move to position x,y. x=0 means line 1, y=0 means col 1
-on = backlight on
-off = backlight off
-hide = hide content displayed
-show = show content displayed
-clear = clear the screen and content
-
+l.help()
+```
+output will be: <br >
+Cheat sheet <br >
+--------------------------------------------------------------<br >
+text   = put string on screen, default position column 1, line 1<br >
+move   = move to position x,y. x=0 means line 1, y=0 means col 1<br >
+on     = backlight on<br >
+off    = backlight off<br >
+hide   = hide content displayed<br >
+show   = show content displayed<br >
+clear  = clear the screen and content<br >
+scroll = scroll the text from left to right<br >
+```
 d.text("hello") # display text hello on the screen with default position
 d.move(7,1)     #change start position at column 5 at 2nd line
 d.text("world") # display text world at the new position
