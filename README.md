@@ -4,14 +4,13 @@ Micropython wrapper script for ESP8266 based microcontroller
 This repository contains the wrapper for interacting with GPIO pin, sensor and displays.
 
 ## Prerequisite
-For LCD wrapper, the LCD1602 driver source is located at https://github.com/dhylands/python_lcd. 
-Clone this repository first then copy these files to your ESP8266 board using adafruit-ampy or webrepl:
-
+For LCD, the LCD1602 driver source is located at https://github.com/dhylands/python_lcd. Clone this repository first then copy these files to your ESP8266 board using adafruit-ampy or webrepl:
 ```
 sudo ampy -b 115200 -p /dev/ttyUSB0 put esp8266_i2c_lcd.py
 sudo ampy -b 115200 -p /dev/ttyUSB0 put lcd_api.py
 ```
 Connect your LCD1602<br >
+--------------------<br >
 SCL --> D1 (GPIO5)<br >
 SDA --> D2 (GPIO4)<br >
 VCC --> 5v <br >
@@ -98,6 +97,7 @@ show   = show content displayed
 clear  = clear the screen and content
 scroll = scroll the text from left to right
 ```
+#### examples:
 d.text("hello") # display text hello on the screen with default position
 d.move(7,1)     #change start position at column 5 at 2nd line
 d.text("world") # display text world at the new position
