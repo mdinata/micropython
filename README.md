@@ -26,7 +26,7 @@ sudo ampy -b 115200 -p /dev/ttyUSB0 put usensor.py
 sudo ampy -b 115200 -p /dev/ttyUSB0 put uLCD.py
 ```
 
-
+## Usage
 ### uGPIO.py
 A generic wrapper to interact with GPIO pin. One wrapper works for Led, Buzzer, RGB led, PWM Led, Servo motor. <br >
 Each .py contains handy help print out <br >
@@ -76,7 +76,7 @@ us.get_distance("m")    # read output in meter
 us.get_average()        # read average distance from a 3 measurement (default) in cm
 us.get_average(5,"mm")  #read average distance from custom individual value in custom unit of measure
 ```
-###uLCD.py
+### uLCD.py
 Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
 ```
 from uLCD import LCD
