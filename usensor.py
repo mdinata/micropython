@@ -1,3 +1,8 @@
+# micropython GPIO wrapper to read data from sensor for ESP8266 based board
+# more classes will be added for various sensors
+# written by Andi Dinata
+# under MIT License
+
 from machine import Pin, PWM
 import time
 
