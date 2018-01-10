@@ -1,7 +1,3 @@
-# micropython GPIO wrapper for ESP8266 based board
-# written by Andi Dinata
-# under MIT License
-
 from machine import Pin, PWM
 import time
 
@@ -15,19 +11,21 @@ class GPIO():
 		elif pulse == 1:
 			self.pin=PWM(Pin(self.pin),Pin.OUT)
 			self.pin.freq(500)
-
+               
         def on(self):
                 self.pin.value(1)
 
         def off(self):
                 self.pin.value(0)
 
+        def toggle(self):
+		self.pin.value(not self.pin.value())
+
 	def repeat(self,n,t=0.5):
 		for i in range(n):
-			self.pin.value(1)
+			self.toggle()
 			time.sleep(t)
-			self.pin.value(0)
-			time.sleep(t)
+		self.off()
 
 	def scale(self,n):
                 if n > 100:
@@ -36,19 +34,30 @@ class GPIO():
                         n = 0
                 percent = n*10
 		self.pin.duty(percent)
-                        
+		return (percent)
+
+	def fade_in(self,step=5,t=0.1):
+                for i in range(0,100,step):
+                        self.scale(i)
+                        time.sleep(t)
+        def fade_out(self,step=5, t=0.1):
+                for i in range(0,100,step):
+                        self.scale(100-i)
+                        time.sleep(t)
+                self.scale(0)
 
         def help():
-                print("Cheat Sheet")
-                print("---------------------------------------")
-                print("D0 IO                           GPIO16")
-                print("D1 IO SCL                       GPIO5")
-                print("D2 IO SDA                       GPIO4")
-                print("D3 IO 10k Pull Up               GPIO0")
-                print("D4 IO 10k Pull Up, Built-in Led GPIO2")
-                print("D5 IO SCK                       GPIO14")
-                print("D6 IO MISO                      GPIO12")
-                print("D7 IO MOSI                      GPIO13")
-                print("D8 IO 10k Pull Down             GPIO15")
-                print("All Pins have PWM except D0")
-
+                print("")
+                print("Cheat Sheet Wemos D1 Mini")
+                print("-------------------------")
+                print("                   ____________")
+                print("                  /            |")
+                print("             RST-|         =   |- TX")
+                print("              A0-|   ESP8266   |- RX")
+                print("NO PWM GPIO16 D0-|         SCL-|- D1 GPIO5")
+                print("       GPIO14 D5-|-SCK     SDA-|- D2 GPIO4")
+                print("       GPIO12 D6-|-MISO        |- D3 GPIO0 PullUp")
+                print("       GPIO13 D7-|-MOSI        |- D4 GPIO2 PullUp Built-in Led")
+                print("PullDn GPIO15 D8-|             |- G")
+                print("             3v3-|_____________|- 5V")
+                print("")
