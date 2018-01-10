@@ -1,3 +1,7 @@
+# micropython wrapper for generic I/O purposes. For micropython in ESP8266 based board
+# written by Andi Dinata
+# under MIT License
+
 from machine import Pin, PWM
 import time
 
