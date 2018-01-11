@@ -16,6 +16,8 @@ SDA --> D2 (GPIO4)<br >
 VCC --> 5v <br >
 GND --> G<br >
 
+For micropython asyncio, get the latest from https://github.com/peterhinch/micropython-async/. Make directory on your ESP board named uasyncio and put synchro.py, .__init__.py, queues.py and core.py. Make another directory called collections and put deque.py inside
+
 ## Installing
 Clone this repository and copy the .py to your ESP8266 board. You can use adafruit-ampy tool to copy to your ESP8266 board
 
@@ -34,18 +36,18 @@ from uGPIO import GPIO
 GPIO.help()
 
 output will be:
-Cheat Sheet
---------------------------------------
-D0 IO                           GPIO16
-D1 IO SCL                       GPIO5
-D2 IO SDA                       GPIO4
-D3 IO 10k Pull Up               GPIO0
-D4 IO 10k Pull Up, Built-in Led GPIO2
-D5 IO SCK                       GPIO14
-D6 IO MISO                      GPIO12
-D7 IO MOSI                      GPIO13
-D8 IO 10k Pull Down             GPIO15
-All Pins have PWM except D0
+Cheat Sheet Wemos D1 Mini
+-------------------------
+                   ____________
+                  /            |
+             RST-|         =   |- TX
+              A0-|   ESP8266   |- RX
+NO PWM GPIO16 D0-|         SCL-|- D1 GPIO5
+       GPIO14 D5-|-SCK     SDA-|- D2 GPIO4
+       GPIO12 D6-|-MISO        |- D3 GPIO0 PullUp
+       GPIO13 D7-|-MOSI        |- D4 GPIO2 PullUp Built-in Led
+PullDn GPIO15 D8-|             |- G
+             3v3-|_____________|- 5V
 
 #pin on/off
 p=GPIO(12)  #initiate pin 12 with default PWM inactive
@@ -56,9 +58,15 @@ p.off()     # GPIO off
 p.repeat(5)     # loop for 5 times at default delay time 0.5 second
 p.repeat(5,0.1) # loop for 5 times at custom delay time e.g. 0.1 second
 
+#pin toggle to turn on and off with the same function
+p.toggle()      # turn on
+p.toggle()      # turn off
+
 #use PWM
 p=GPIO(12,1)  # initiate pin 12 with PWM flag active with default frequency at 500
 p.scale(50)   # change duty cycle in 1-100. 0 = off, 1 = minimum, 100 = maximum
+p.fade_in()   # to increase the led brightness gradually. Default step=5, t=0.1. Change step and t for smoother effect.
+p.fade_out()  # to decrease the led brightness gradually. Default step=5, t=0.1. Change step and t for smoother effect.
 ```
 
 ### usensor.py
@@ -108,3 +116,19 @@ l.scroll('hi')      # scroll the text 'hi' from left to right. default delay 0.5
 l.scroll('hi',0.1)  # scroll text at custom speed
 l.clear()           # clear the screen
 ```
+### async_demo.py
+Wrapper to get micropython async programming running on your ESP8266 board. Demo is using RGB led where each led has different cycles and seemingly running parallel. By default Red color use Pin 15, Green use Pin 12 and Blue use Pin 13. Specify your own Pin for each color.
+```
+from async_demo import RGB
+l=RGB()
+```
+or:
+```
+l=RGB(15,12,13)
+```
+#### usage:
+```
+l.rainbow()       #each color will fade in/out with different timnig seemingly parallel and produces new color
+l.disco()         #each color will turn on/off with different timing like disco light
+```
+Be sure to soft-reset the board (Ctrl-D) before switching from rainbow and disco. It is known bug, the loop close does not clear the task queue.
