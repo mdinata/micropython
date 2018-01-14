@@ -1,7 +1,7 @@
 # Micropython wrapper
 Micropython wrapper script for ESP8266 based microcontroller
 
-This repository contains the wrapper for interacting with GPIO pin, sensor and displays.
+This repository contains the wrapper for interacting with GPIO pin, sensor, display and webserver
 
 ## Prerequisite
 For LCD, the LCD1602 driver source is located at https://github.com/dhylands/python_lcd. Clone this repository first then copy these files to your ESP8266 board using adafruit-ampy or webrepl:
@@ -132,3 +132,12 @@ l.rainbow()       #each color will fade in/out with different timnig seemingly p
 l.disco()         #each color will turn on/off with different timing like disco light
 ```
 Be sure to soft-reset the board (Ctrl-D) before switching from rainbow and disco. It is known bug, the loop close does not clear the task queue.
+
+### webit.py
+This wrapper help your measurement data published to webpage in no time. Call your main function to measure from webit to get it published in website. The refresh button in webpage allows you to refresh the individual reading. If you are connected to micropython access point e.g. MicroPython-XXXXXX, go to address 192.168.4.1 from your web browser.
+#### usage:
+```
+from webit import Webserver
+w=Webserver()
+w.start()
+```
