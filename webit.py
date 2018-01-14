@@ -1,9 +1,9 @@
 
-#Written by Andi Dinata
+#WebIT written by Andi Dinata
 #Under MIT License
 #January 2018
 #A simple module for a simple work to put any sensor reading to a webpage
-#Add as many as reading as you want in the most simple way possible
+#Add as many as reading as you want in the most simple way possible. Just web it.
 
 import socket 
 import websocket_helper
@@ -22,18 +22,18 @@ html = """<!DOCTYPE html>
 """
 data=0
 
-class Begin():
+class Webserver():
     def __init__(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind(('', 80))
         self.s.listen(5)
             
     def output_feed(self):
-        #change this to call your other function
+	#below line is for the demo only, comment it and put your object here
         my_output=input("Type in any value and press ENTER to be printed in webpage: ")
         return my_output
     
-    def feed(self):
+    def start(self):
         while True:
             conn, addr = self.s.accept()
             request = conn.recv(1024)
