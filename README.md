@@ -141,3 +141,11 @@ from webit import Webserver
 w=Webserver()
 w.start()
 ```
+### music.py
+This is wrapper to for music jukebox with micropython. One song is added at the time being. Set the pin where your buzzer is connected e.g. Pin14 and set the led pin to flash along the playing tone. If led pin is not specified, it will use Pin2 (on board led).
+#### usage:
+```
+from music import Music
+m=Music(14,16)
+m.play(1)
+```
