@@ -1,51 +1,1 @@
-# micropython GPIO wrapper to read data from sensor for ESP8266 based board
-# more classes will be added for various sensors
-# written by Andi Dinata
-# under MIT License
-
-from machine import Pin, PWM
-import time
-
-class Ultrasonic():
-    def __init__(self,trig_pin,echo_pin):
-        self.trig_pin = trig_pin
-        self.echo_pin = echo_pin
-        self.trig = Pin(self.trig_pin, Pin.OUT)
-        self.trig.off()
-        time.sleep_ms(2)
-        self.trig.on()
-        time.sleep_ms(10)
-        self.trig.off()
-
-        self.echo = Pin(self.echo_pin, Pin.IN)
-
-    def get_distance(self,unit="cm"):
-        self.trig.on()
-        time.sleep_ms(10)
-        self.trig.off()
-
-        while self.echo.value() == 0:
-            pass
-        start = time.ticks_us()
-
-        while self.echo.value() == 1:
-            pass
-        stop = time.ticks_us()
-        d = (stop - start) / 58
-        distance = round(d,2)
-        if unit == "mm":
-            factor = 10
-        elif unit == "cm":
-            factor = 1
-        elif unit == "m":
-            factor = 0.01
-            
-        return distance*factor
-        
-    def get_average(self,n=3,unit="cm"):
-        d=[]
-        for i in range(n):
-            d.insert(0,self.get_distance(unit))
-            time.sleep_ms(100)
-        print(d)
-        return sum(d)/n
+# micropython GPIO wrapper to read data from sensor for ESP8266 based board# more classes will be added for various sensors# written by Andi Dinata# under MIT Licensefrom machine import Pin, PWM, ADCimport timeclass Ultrasonic():    def __init__(self,trig_pin,echo_pin):        self.trig_pin = trig_pin        self.echo_pin = echo_pin        self.trig = Pin(self.trig_pin, Pin.OUT)        self.trig.off()        time.sleep_ms(2)        self.trig.on()        time.sleep_ms(10)        self.trig.off()        self.echo = Pin(self.echo_pin, Pin.IN)    def get_distance(self,unit="cm"):        self.trig.on()        time.sleep_ms(10)        self.trig.off()        while self.echo.value() == 0:            pass        start = time.ticks_us()        while self.echo.value() == 1:            pass        stop = time.ticks_us()        d = (stop - start) / 58        distance = round(d,2)        if unit == "mm":            factor = 10        elif unit == "cm":            factor = 1        elif unit == "m":            factor = 0.01                    return distance*factor            def get_average(self,n=3,unit="cm"):        d=[]        for i in range(n):            d.insert(0,self.get_distance(unit))            time.sleep_ms(100)        print(d)        return sum(d)/n        class Temp():  def __init__(self,pin=16,sensor=11):    self.pin = pin    if sensor == 11:      from dht import DHT11      self.trh=DHT11(Pin(self.pin))    elif sensor == 22:      from dht import DHT22      seld.trh=DHT22(Pin(self.pin))    else:      print("enter 11 for DHT11 and 22 for DHT22 sensor")      def measure(self):    self.trh.measure()    temp=self.trh.temperature()    rh=self.trh.humidity()    result=temp,rh    return result class LDR():  def __init__(self):    self.adc=ADC(0)    def value(self):    self.val = self.adc.read()    return self.val        
