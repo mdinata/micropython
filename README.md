@@ -70,10 +70,12 @@ p.fade_out()  # to decrease the led brightness gradually. Default step=5, t=0.1.
 ```
 
 ### usensor.py
-Wrapper to simplify the operation of ultrasonic HC-SR04.
+Wrapper to simplify the operation of: ultrasonic HC-SR04, DHT11/22, LDR
 ```
-from usensor import Ultrasonic
+from usensor import Ultrasonic, Temp, LDR
 us=Ultrasonic(5,4)      # initiate sensor with trigger at Pin 5 and echo at Pin 4. Change it according your setup
+trh=Temp(16,11)         # initiate Pin 16 which is wired to DHT11. Change to 22 incase of DHT22
+light=LDR()             # initiate LDR sensor connected to Pin A0
 ```
 #### usage:
 ```
@@ -85,6 +87,22 @@ us.get_distance("m")    # read output in meter
 #get distance from multiple measurement and return average value
 us.get_average()        # read average distance from a 3 measurement (default) in cm
 us.get_average(5,"mm")  # read average distance from custom individual value in custom unit of measure
+
+#get Temperature and RH reading
+trh.measure()
+
+#get LDR resistance reading
+light.value()
+
+example of changing led brightness based on LDR resistance
+from usensor import LDR
+from uGPIO import GPIO
+led=GPIO(4,1)
+light=LDR()
+while True:
+  intensity=int((light.value())/10)
+  led.scale(intensity)
+
 ```
 ### uLCD.py
 Wrapper to simplify the operation of LCD1602 display with I2C Backpack.
