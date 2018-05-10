@@ -167,3 +167,15 @@ from music import Music
 m=Music(14,16)
 m.play(1)
 ```
+### buzzer.py
+This is wrapper is improvement of music.py. You just need to arrange the human-readable note in the list, rather than pitch number. Set the pin where your buzzer is connected e.g. Pin14 and set the led pin to flash along the playing tone. If led pin is not specified, it will use Pin2 (the on board led).
+#### usage:
+```
+from buzzer import Music
+m=Music(14,4)
+
+note=['C2','D2','E2','F3','G2','A2','B2','C3']
+duration=[0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5]
+
+m.play(note,duration)
+```
