@@ -1,5 +1,5 @@
 """
-Floaty Dot is flappy bird clone.
+Floaty Dot is flappy bird dot matrix implementation using Micropython
 Written by Andi Dinata
 November 3rd, 2018
 """
