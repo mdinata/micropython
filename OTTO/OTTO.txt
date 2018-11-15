@@ -1,0 +1,20 @@
+HELLO WORLD, THIS IS OTTO
+|========|
+|  O++O  |
+|________|
+|________|
+  ||  \\
+ _||  //_
+
+import OTTO
+
+OTTO.standby() -- puts OTTO to default position
+OTTO.updown(n) -- move OTTO up and down for n times
+OTTO.zigzag(n) -- makes OTTO body moves
+OTTO.tilt('direction') -- OTTO to tilt to either side. 'left' for left and 'right' for right
+OTTO.wiggle('direction',n) -- OTTO tilt and wiggle its foot for n times
+OTTO.strafe('direction',step) -- OTTO walk strafe to left and right
+OTTO.move('direction',step)-- OTTO move('direction') and number of step
+OTTO.turn('direction',step) -- OTTO turn to desired direction
+OTTO.moonwalk('direction',step) -- OTTO perform Michel Jackson famous walk
+more moves to come...
