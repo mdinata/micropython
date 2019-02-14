@@ -9,9 +9,10 @@ Use ampy or uPyCraft or any IDE to load txt in the usual way. Here is example on
 ampy -b 115200 -p /dev/ttyUSB0 put image.txt
 ```
 ## Usage Nokia 5110.py
-Inside Micropython, Write the syntax without prompt sign
+Inside Micropython, Write the syntax without prompt sign. For flexibility, you could align the picture by specifying the coordinate x,y. In below example it is set at x=0 and y=0. Try the normal picture and the inverted.
 ```py
 >>> from nokia5110 import Display
 >>> lcd=Display()
 >>> lcd.picture(0,0,"image.txt")
+>>> lcd.picture_invert(0,0,"image.txt")
 ```
