@@ -1,3 +1,7 @@
+# Andi Dinata
+# 15 February 2019
+# get pcd8544.py from https://github.com/mcauser/micropython-pcd8544
+
 import pcd8544, framebuf
 from machine import Pin, SPI
 
