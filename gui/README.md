@@ -57,6 +57,8 @@ t3=Textbox(display,"Next",64,39)
 
 display.show()
 ```
+<img src="https://github.com/mdinata/micropython/blob/master/gui/asset/File_000.png" alt="drawing" width="400"/>
+
 #### Step 2. Modify
 Invert toggle
 ```python
