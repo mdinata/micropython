@@ -27,6 +27,9 @@ class Form:
             self.buffer.rect(len(self.string)*4+self.margin,self.y,self.width,self.height,c)
     
     def value(self,valuestring,c=1,align='left'):
+        if isinstance(valuestring,int) or isinstance(valuestring,float):
+            valuestring=str(valuestring)
+            
         if align == 'left':
             x=(len(self.string)*4)+self.margin*2
         elif align == 'right':
