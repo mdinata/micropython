@@ -1,4 +1,4 @@
-## Forms
+## Form
 Create simple form for all display types using micropython framebuffer
 
 #### Step 1. Initiate your display device
@@ -44,5 +44,30 @@ display.show()
 Clear value
 ```python
 f1.clear()
+display.show()
+```
+## Textbox
+#### Step 1.Create instances
+```python
+from form import *
+
+t1=Textbox(display,"Prev",0,39)
+t2=Textbox(display,"OK",38,39)
+t3=Textbox(display,"Next",64,39)
+
+display.show()
+```
+#### Step 2. Modify
+Invert toggle
+```python
+t1.toggle()
+t2.toggle()
+t3.toggle()
+```
+Change value
+```python
+t1.string="<<"
+t1.clear()
+t1.draw()
 display.show()
 ```
