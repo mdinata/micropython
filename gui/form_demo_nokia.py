@@ -1,5 +1,5 @@
 #Andi Dinata
-#01 May 2002
+#01 May 2022
 
 #Nokia 5110 display initiation part
 import pcd8544_fb
