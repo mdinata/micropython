@@ -1,3 +1,6 @@
+#Andi Dinata
+#02 May 2022
+
 import pcd8544_fb
 from machine import Pin, SPI, ADC
 import time
