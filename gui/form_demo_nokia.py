@@ -1,3 +1,6 @@
+#Andi Dinata
+#01 May 2002
+
 #Nokia 5110 display initiation part
 import pcd8544_fb
 from machine import Pin, SPI
