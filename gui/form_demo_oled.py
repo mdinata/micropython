@@ -1,3 +1,6 @@
+#Andi Dinata
+#01 May 2002
+
 #oled display initiation part
 from machine import Pin, I2C
 import ssd1306
