@@ -1,3 +1,6 @@
+#Andi Dinata
+#01 May 2002
+
 import font454 as sf
 
 class Form:
