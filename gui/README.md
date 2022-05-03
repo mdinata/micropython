@@ -73,3 +73,39 @@ t1.clear()
 t1.draw()
 display.show()
 ```
+## Gauge
+Initiate display
+```python
+from machine import Pin, I2C,ADC
+import ssd1306
+import time
+from gauge import Hbar
+
+i2c=I2C(scl=Pin(5), sda=Pin(4), freq=100000)
+display=ssd1306.SSD1306_I2C(128,64,i2c)
+```
+Create instance
+```python
+cpu=Hbar(display,"CPU :",x=0,y=0,width=20,height=10,c=1,maxread=1024,step=0.1)        
+mem=Hbar(display,"RAM :",0,12,30,10,1,1024)
+disk=Hbar(display,"Disk:",0,24,35,10,1,1024,step=0.2)
+```
+Main program
+```python
+
+pot=ADC(0)
+
+while True:
+    pot_value=pot.read()
+
+    cpu.value(pot_value,uom="%",series=True)
+    mem.value(pot_value,uom="MB",series=True)
+    disk.value(pot_value,uom="GB",series=True)
+    
+    time.sleep(0.1)
+    display.show()
+    
+    cpu.clear()
+    mem.clear()
+    disk.clear()
+```
